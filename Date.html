@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <input type='date' name="date" type="hidden" value="2020-11-01" />
+    <br />
+    <br />
+    <button onclick="getDate()">Click</button>
+
+    <script>    
+        function getDate() {
+
+            var d = new Date();
+console.log(d);
+
+d.setDate(d.getDate() - 1);
+
+console.log(d);
+
+            var date = document.getElementsByName("date")[0].value;
+            console.log(date)   
+            var d1 = Date.parse(date);
+            dateArr=date.split('-')
+            console.log(d1)
+            d2=new Date(d1).toUTCString() 
+            console.log(d2)
+            var d4 = new Date();
+d4.setDate(d2.getDate() - 1);
+
+console.log(d4);
+
+
+
+        }
+    </script>
+
+</body>
+
+</html>
