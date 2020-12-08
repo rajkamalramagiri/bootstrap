@@ -1,0 +1,65 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <p id='demo'>waiting...</p>
+
+        <script>
+            let link='';
+            
+            function createLink(link)
+                {
+                alert('fun')
+                let resultantarray = link.split(" ");
+                console.log(resultantarray)
+                let arraylength=resultantarray.length;
+                if(resultantarray.includes('rel="next"'))
+                {
+
+                    if(arraylength===4){
+                        resultantarray.splice(0,2)
+                    }
+                    let relativelink=resultantarray[0]
+                    let newlink=relativelink.slice(1,relativelink.length-2)
+                    return newlink;
+                }
+                return null;
+
+                }   
+            async function getApi() {
+                let url = 'http://localhost:8081/dashboard'
+                let response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+
+                });
+                let result = await response.json();
+                console.log('result',result)
+                alert('completed')
+
+                // link=result.next;
+                // console.log(link)
+                // let nextLink=createLink(link)
+                // console.log(nextLink)
+
+                document.getElementById("demo").innerHTML = result.length;
+
+            }
+
+
+            
+            getApi();
+        </script>
+
+
+    </body>
+
+    </html>
